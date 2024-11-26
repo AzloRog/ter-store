@@ -11,7 +11,7 @@ export interface Props {
 }
 const ProductCard = ({ title, image, price }: Props) => {
   return (
-    <div className=" border-2 border-gray-500 rounded-md inline-flex flex-col items-center gap-4 bg-gray-100">
+    <div className="border-2 border-gray-500 rounded-md flex flex-col items-center gap-4 bg-gray-100">
       <div className="py-2 px-4 flex flex-col items-center gap-4">
         <Image src={image} width={70} height={20} alt={title} />
         <div>

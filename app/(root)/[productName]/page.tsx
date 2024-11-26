@@ -1,5 +1,8 @@
 import React from "react";
 import goods from "@/app/constants/goods";
+import Carousel from "@/app/components/ui/Carousel";
+import PurchaseButton from "@/app/components/PurchaseButton";
+
 const ProductPage = async ({
   params,
 }: {
@@ -21,10 +24,25 @@ const ProductPage = async ({
   }
 
   return (
-    <>
-      <h1>{product.title}</h1>
-      <p>{product.price}</p>
-    </>
+    <section>
+      <div className="container pt-40 px-36 flex gap-8">
+        <div className="flex-1  ">
+          <Carousel images={product.images} />
+        </div>
+        <div className="flex-1 mt-2 flex flex-col gap-2">
+          <h1 className="text-4xl">{product.title}</h1>
+          <ul className="mt-2 ml-4 text-xl flex flex-col gap-3">
+            <li>цена: {product.price}</li>
+            <li>урон: {product.damage}</li>
+            <li>критический урон: {product.criticalDamage}</li>
+            <li>редкость: {product.rarity}</li>
+          </ul>
+          <div className="ml-4 mt-8">
+            <PurchaseButton targetProductId={product.id} />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

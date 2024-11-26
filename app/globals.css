@@ -7,3 +7,31 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.carousel-btn {
+  width: 17px;
+  height: 17px;
+  display: block;
+
+  border: 1.5px solid #8c8c8c;
+  background: #9c9a9a;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.carousel-btn:hover {
+  background: #666666;
+}
+
+.chevron {
+  width: 30px;
+  height: 30px;
+  background: url("./images/icons/chevron-right.svg") 50%/100% no-repeat;
+}
+.chevron_revert {
+  width: 30px;
+  height: 30px;
+  background: url("./images/icons/chevron-right.svg") 50%/100% no-repeat;
+
+  transform: scaleX(-1);
+}

@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
-import navLinks from "../constants/navigationLinks";
+import Navigation from "./ui/Navigation";
 
 const Header = () => {
   return (
@@ -18,14 +17,9 @@ const Header = () => {
           />
           <h1>Shop</h1>
         </Link>
-        <nav className="flex-1 flex gap-6 text-3xl items-center justify-between">
-          <div className="flex items-center gap-6 ">
-            {navLinks.map((link) => (
-              <Link href={link.link}>{link.name}</Link>
-            ))}
-          </div>
-          <Link href="#">Выйти</Link>
-        </nav>
+        <div className="flex-1">
+          <Navigation />
+        </div>
       </div>
     </header>
   );

@@ -1,12 +1,33 @@
-import {Props as goodProps} from "../components/ProductCard"
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Cutlass from "../images/goodsIcons/Cutlass.png"
-const goods: goodProps[] = [
+import Cutlass2 from "../images/goodsIcons/Cutlass2.png"
+
+export interface product {
+    id: number,
+    title: string,
+    price: number,
+    damage: number,
+    criticalDamage: number,
+    rarity: string,
+    images: StaticImport[]
+}
+const goods: product[] = [
     {
         id: 0,
         title: "Cutlas",
         price: 1250,
-        image: Cutlass,
-    }
+        damage: 53,
+        criticalDamage: 4,
+        rarity: "Light Red",
+        images: [Cutlass, Cutlass2],
+    },
+
+
+
+
+
+
+
 ]
 
 

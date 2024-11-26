@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { BasketStoreProvider } from "@/app/stores/providers/basket-store-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <BasketStoreProvider>{children}</BasketStoreProvider>
+      </body>
     </html>
   );
 }
