@@ -1,7 +1,14 @@
+import ProductBasketList from "@/app/components/ProductBasketList";
 import React from "react";
 
-const page = () => {
-  return <div>page</div>;
+const BasketPage = () => {
+  return (
+    <section>
+      <div className="container">
+        <ProductBasketList />
+      </div>
+    </section>
+  );
 };
 
-export default page;
+export default BasketPage;

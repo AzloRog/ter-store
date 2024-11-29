@@ -21,6 +21,25 @@ const goods: product[] = [
         rarity: "Light Red",
         images: [Cutlass, Cutlass2],
     },
+    {
+        id: 1,
+        title: "Marino",
+        price: 1250,
+        damage: 53,
+        criticalDamage: 4,
+        rarity: "Light Red",
+        images: [Cutlass, Cutlass2],
+    },
+    {
+        id: 2,
+        title: "Kasto",
+        price: 1250,
+        damage: 53,
+        criticalDamage: 4,
+        rarity: "Light Red",
+        images: [Cutlass, Cutlass2],
+    },
+
 
 
 

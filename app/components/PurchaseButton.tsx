@@ -2,19 +2,31 @@
 import React from "react";
 import { useBasketStore } from "@/app/stores/providers/basket-store-provider";
 import Link from "next/link";
+import { product } from "../constants/goods";
+
 interface Props {
-  targetProductId: number;
+  productId: number;
+  productTitle: string;
+  productImageUrl: string;
 }
-const PurchaseButton = ({ targetProductId }: Props) => {
-  const { addProduct, removeProduct, goodsIds } = useBasketStore(
-    (store) => store
-  );
+const PurchaseButton = ({
+  productId,
+  productTitle,
+  productImageUrl,
+}: Props) => {
+  const {
+    addProduct,
+    removeProduct,
+    increaseProductQuantity,
+    decreaseProductQuantity,
+    goods,
+  } = useBasketStore((store) => store);
 
-  const count = goodsIds.filter((id) => id == targetProductId).length;
-
+  const quantity = goods.find((item) => item.id == productId)?.quantity || 0;
+  console.log(productId);
   return (
     <div className="inline-block text-2xl rounded-md overflow-hidden">
-      {count > 0 ? (
+      {quantity > 0 ? (
         <div className="flex items-center">
           <Link
             href="/basket"
@@ -24,23 +36,34 @@ const PurchaseButton = ({ targetProductId }: Props) => {
           </Link>
           <div className="py-4 px-6 flex gap-4 items-center bg-gradient-to-r from-slate-300 to-slate-200">
             <button
-              onClick={() => removeProduct(targetProductId)}
+              onClick={
+                quantity > 1
+                  ? () => decreaseProductQuantity(productId)
+                  : () => removeProduct(productId)
+              }
               className="chevron_revert"
             ></button>
             <div
               className={`w-8 flex-grow-0 text-2xl flex items-center justify-center`}
             >
-              {count}
+              {quantity}
             </div>
             <button
-              onClick={() => addProduct(targetProductId)}
+              onClick={() => increaseProductQuantity(productId)}
               className="chevron"
             ></button>
           </div>
         </div>
       ) : (
         <button
-          onClick={() => addProduct(targetProductId)}
+          onClick={() =>
+            addProduct({
+              id: productId,
+              name: productTitle,
+              quantity: 1,
+              imageUrl: productImageUrl,
+            })
+          }
           className="py-4 px-6 bg-gradient-to-r from-slate-300 to-slate-200"
         >
           Добавить в корзину

@@ -1,18 +1,27 @@
 import { createStore } from 'zustand/vanilla'
 
+export interface Product {
+  id: number,
+  name: string,
+  quantity: number,
+  imageUrl: string
+}
 export type BasketState = {
-  goodsIds: number[]
+  goods: Product[]
 }
 
 export type BasketActions = {
-  addProduct: (id: number) => void
-  removeProduct: (id: number) => void
+  addProduct: (product: Product) => void
+  removeProduct: (product: number) => void
+
+  increaseProductQuantity: (id: number) => void
+  decreaseProductQuantity: (id: number) => void
 }
 
 export type BasketStore = BasketState & BasketActions
 
 export const defaultInitState: BasketState = {
-  goodsIds: [],
+  goods: [],
 }
 
 export const createBasketStore = (
@@ -20,13 +29,29 @@ export const createBasketStore = (
 ) => {
   return createStore<BasketStore>()((set) => ({
     ...initState,
-    addProduct: (id: number) => set((state) => ({ goodsIds: [...state.goodsIds, id] })),
-    removeProduct: (id: number) => set((state) => {
-      const targetIndex = state.goodsIds.findIndex(_id => _id == id);
-      const newArray = [...state.goodsIds].splice(targetIndex, 1);
-
-      return {goodsIds: newArray}
+    addProduct: (product: Product) => set((state) => ({ goods: [...state.goods, product ] })),
+    removeProduct: (id: number) => set((state) => ({ goods: state.goods.filter(product => product.id != id)})),
+    increaseProductQuantity: (id: number) => set((state) => {
+      const newArray = state.goods.map(product => {
+        if (product.id == id) {
+          return {...product, quantity: product.quantity + 1}
+        } else {
+          return product
+        }
+      });
+      return {goods: newArray}
     }),
+    decreaseProductQuantity: (id: number) => set((state) => {
+      const newArray = state.goods.map(product => {
+        if (product.id == id) {
+          return {...product, quantity: product.quantity + 1}
+        } else {
+          return product
+        }
+      });
+      return {goods: newArray}
+    })
+
   }))
 }
 

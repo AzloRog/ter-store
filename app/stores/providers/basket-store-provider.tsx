@@ -4,7 +4,7 @@ import { type ReactNode, createContext, useRef, useContext } from "react";
 import { useStore, create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import { type BasketStore, createBasketStore } from "../basket-store";
+import { type BasketStore, createBasketStore, Product } from "../basket-store";
 
 export type BasketStoreApi = ReturnType<typeof createBasketStore>;
 
@@ -31,16 +31,33 @@ export const BasketStoreProvider = ({ children }: BasketStoreProviderProps) => {
 export const useBasketStore = create(
   persist<BasketStore>(
     (set, get) => ({
-      goodsIds: [],
-      addProduct: (id: number) =>
-        set((state) => ({ goodsIds: [...state.goodsIds, id] })),
+      goods: [],
+      addProduct: (product: Product) =>
+        set((state) => ({ goods: [...state.goods, product] })),
       removeProduct: (id: number) =>
-        set((state) => {
-          const targetIndex = state.goodsIds.findIndex((_id) => _id == id);
-          const newArray = [...state.goodsIds];
-          newArray.splice(targetIndex, 1);
-          return { goodsIds: newArray };
-        }),
+        set((state) => ({
+          goods: state.goods.filter((product) => product.id != id),
+        })),
+      increaseProductQuantity: (id: number) =>
+        set((state) => ({
+          goods: state.goods.map((product) => {
+            if (product.id == id) {
+              return { ...product, quantity: product.quantity + 1 };
+            } else {
+              return product;
+            }
+          }),
+        })),
+      decreaseProductQuantity: (id: number) =>
+        set((state) => ({
+          goods: state.goods.map((product) => {
+            if (product.id == id) {
+              return { ...product, quantity: product.quantity - 1 };
+            } else {
+              return product;
+            }
+          }),
+        })),
     }),
     {
       name: "basket",

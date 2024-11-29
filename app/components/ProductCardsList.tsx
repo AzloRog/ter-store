@@ -2,16 +2,21 @@ import React from "react";
 
 import ProductCard from "./ProductCard";
 import { product as ProductCardProps } from "../constants/goods";
-
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+}
 interface Props {
-  goodsList: ProductCardProps[];
+  goodsList: Product[];
 }
 const ProductCardsList = ({ goodsList }: Props) => {
   return (
     <ul className="grid grid-cols-7 gap-8">
       {goodsList.map((good) => (
         <li key={good.id}>
-          <ProductCard {...good} image={good.images[0]} />
+          <ProductCard {...good} />
         </li>
       ))}
     </ul>

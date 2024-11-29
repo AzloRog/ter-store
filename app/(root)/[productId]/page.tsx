@@ -6,18 +6,18 @@ import PurchaseButton from "@/app/components/PurchaseButton";
 const ProductPage = async ({
   params,
 }: {
-  params: Promise<{ productName: string }>;
+  params: Promise<{ productId: number }>;
 }) => {
-  const productName = (await params).productName;
+  const productId = (await params).productId;
 
-  const product = goods.find((item) => item.title == productName);
+  const product = goods.find((item) => item.id == productId);
 
   if (!product) {
     return (
       <div className="absolute top-0 left-0 w-full h-full z-[-1] flex items-center justify-center">
         <h1 className="text-2xl">
-          Товар под названием{" "}
-          <span className="font-semibold">{productName}</span> не существует
+          Товар под названием <span className="font-semibold">{productId}</span>{" "}
+          не существует
         </h1>
       </div>
     );
@@ -38,7 +38,10 @@ const ProductPage = async ({
             <li>редкость: {product.rarity}</li>
           </ul>
           <div className="ml-4 mt-8">
-            <PurchaseButton targetProductId={product.id} />
+            <PurchaseButton
+              productId={product.id}
+              productTitle={product.title}
+            />
           </div>
         </div>
       </div>

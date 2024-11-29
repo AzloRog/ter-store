@@ -7,8 +7,12 @@ import navLinks from "../../constants/navigationLinks";
 import MessageIconUI from "./MessageIconUI";
 
 const Navigation = () => {
-  const { goodsIds } = useBasketStore((store) => store);
-  const basketMessagesCount = goodsIds.length;
+  const { goods } = useBasketStore((store) => store);
+
+  const basketMessagesCount = goods.reduce(
+    (prev, current) => prev + current.quantity,
+    0
+  );
 
   return (
     <nav className="flex gap-6 text-3xl items-center justify-between">
