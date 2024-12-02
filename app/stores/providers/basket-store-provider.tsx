@@ -34,11 +34,11 @@ export const useBasketStore = create(
       goods: [],
       addProduct: (product: Product) =>
         set((state) => ({ goods: [...state.goods, product] })),
-      removeProduct: (id: number) =>
+      removeProduct: (id: string) =>
         set((state) => ({
           goods: state.goods.filter((product) => product.id != id),
         })),
-      increaseProductQuantity: (id: number) =>
+      increaseProductQuantity: (id: string) =>
         set((state) => ({
           goods: state.goods.map((product) => {
             if (product.id == id) {
@@ -48,7 +48,7 @@ export const useBasketStore = create(
             }
           }),
         })),
-      decreaseProductQuantity: (id: number) =>
+      decreaseProductQuantity: (id: string) =>
         set((state) => ({
           goods: state.goods.map((product) => {
             if (product.id == id) {
