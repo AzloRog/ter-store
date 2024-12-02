@@ -10,7 +10,6 @@ export interface Props {
   price: number;
 }
 const ProductCard = ({ id, name, image, price }: Props) => {
-  console.log(image);
   return (
     <div className="border-2 border-gray-500 rounded-md flex flex-col gap-4 bg-gray-100 h-full">
       <div className="flex-1 py-2 px-4 flex flex-col items-center gap-4">

@@ -5,7 +5,6 @@ import dbGoods from "../constants/goods";
 const ProductBasketList = () => {
   const { goods } = useBasketStore((store) => store);
 
-  console.log(goods);
   return (
     <div className="">
       <div className="px-12 flex justify-between text-2xl font-bold">

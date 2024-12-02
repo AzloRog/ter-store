@@ -8,19 +8,17 @@ import { unstable_cache } from "next/cache";
 const goodsData = unstable_cache(
   async () =>
     await databases.listDocuments(
-      process.env.NEXT_PUBLIC_DATABASE_ID || "",
-      process.env.NEXT_PUBLIC_COLLECTION_GOODS_ID || ""
+      process.env.DATABASE_ID || "",
+      process.env.COLLECTION_GOODS_ID || ""
     ),
   ["goods"],
   { revalidate: 60, tags: ["goods"] }
 ); //Caching static data
 
 const page = async () => {
-  const bucketId = process.env.NEXT_PUBLIC_BUCKET_STORAGE_ID || "";
+  const bucketId = process.env.BUCKET_STORAGE_ID || "";
   const data = (await goodsData()).documents as Product[];
-  console.log(data);
   const goods = data.map((product) => {
-    console.log();
     const image = storage.getFileView(bucketId, product.images_urls[0]);
     return { ...product, image, id: product.$id };
   });

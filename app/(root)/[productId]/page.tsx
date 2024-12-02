@@ -9,10 +9,9 @@ import { unstable_cache } from "next/cache";
 
 const getImages = async (imagesIds: string[]) => {
   const images = [];
-  console.log("Fetched");
   for (const id of imagesIds) {
     const image = await storage.getFileView(
-      process.env.NEXT_PUBLIC_BUCKET_STORAGE_ID || "null",
+      process.env.BUCKET_STORAGE_ID || "null",
       id
     );
     images.push(image);
@@ -21,10 +20,9 @@ const getImages = async (imagesIds: string[]) => {
 };
 const getCachedProduct = unstable_cache(
   async (productId: string) => {
-    console.log("cached");
     return (await databases.getDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID || "",
-      process.env.NEXT_PUBLIC_COLLECTION_GOODS_ID || "",
+      process.env.DATABASE_ID || "",
+      process.env.COLLECTION_GOODS_ID || "",
       productId
     )) as Product;
   },
@@ -50,7 +48,6 @@ const ProductPage = async ({
   const productInfo = product.product_id as ProductInfo;
   const images = await getCachedImages(product.images_urls);
 
-  console.log(images);
   if (!product) {
     return (
       <div className="absolute top-0 left-0 w-full h-full z-[-1] flex items-center justify-center">

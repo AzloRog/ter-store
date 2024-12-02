@@ -23,7 +23,6 @@ const PurchaseButton = ({
   } = useBasketStore((store) => store);
 
   const quantity = goods.find((item) => item.id == productId)?.quantity || 0;
-  console.log(productId);
   return (
     <div className="inline-block text-2xl rounded-md overflow-hidden">
       {quantity > 0 ? (

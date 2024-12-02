@@ -3,7 +3,6 @@ import { Product } from "../stores/basket-store";
 import Image from "next/image";
 import Link from "next/link";
 const ProductBasketCard = ({ id, name, quantity, imageUrl }: Product) => {
-  console.log(imageUrl);
   return (
     <Link
       href={"/" + id}
