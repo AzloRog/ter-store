@@ -3,8 +3,8 @@ import React from "react";
 
 const BasketPage = () => {
   return (
-    <section>
-      <div className="container">
+    <section className="py-10">
+      <div className="container px-4 xl:px-80">
         <ProductBasketList />
       </div>
     </section>

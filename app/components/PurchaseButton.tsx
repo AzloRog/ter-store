@@ -5,7 +5,7 @@ import Link from "next/link";
 import { product } from "../constants/goods";
 
 interface Props {
-  productId: number;
+  productId: string;
   productTitle: string;
   productImageUrl: string;
 }

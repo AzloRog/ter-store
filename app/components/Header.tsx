@@ -5,8 +5,8 @@ import Navigation from "./ui/Navigation";
 
 const Header = () => {
   return (
-    <header className="px-4 py-4">
-      <div className="container flex items-center gap-16">
+    <header className="px-4 py-4 ">
+      <div className="container flex items-center justify-between gap-16">
         <Link href="/" className="flex gap-2 items-center text-4xl">
           <Image
             src={"/Title.webp"}
@@ -17,7 +17,7 @@ const Header = () => {
           />
           <h1>Shop</h1>
         </Link>
-        <div className="flex-1">
+        <div className="md:flex-1">
           <Navigation />
         </div>
       </div>

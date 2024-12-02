@@ -13,7 +13,7 @@ interface Props {
 }
 const ProductCardsList = ({ goodsList }: Props) => {
   return (
-    <ul className="grid grid-cols-7 gap-8">
+    <ul className="grid auto-cols-auto md:grid-cols-3 xl:grid-cols-7 gap-8">
       {goodsList.map((good) => (
         <li key={good.id}>
           <ProductCard {...good} />

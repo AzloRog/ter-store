@@ -1,7 +1,7 @@
 import { createStore } from 'zustand/vanilla'
 
 export interface Product {
-  id: number,
+  id: string,
   name: string,
   quantity: number,
   imageUrl: string
@@ -12,10 +12,10 @@ export type BasketState = {
 
 export type BasketActions = {
   addProduct: (product: Product) => void
-  removeProduct: (product: number) => void
+  removeProduct: (product: string) => void
 
-  increaseProductQuantity: (id: number) => void
-  decreaseProductQuantity: (id: number) => void
+  increaseProductQuantity: (id: string) => void
+  decreaseProductQuantity: (id: string) => void
 }
 
 export type BasketStore = BasketState & BasketActions
@@ -30,8 +30,8 @@ export const createBasketStore = (
   return createStore<BasketStore>()((set) => ({
     ...initState,
     addProduct: (product: Product) => set((state) => ({ goods: [...state.goods, product ] })),
-    removeProduct: (id: number) => set((state) => ({ goods: state.goods.filter(product => product.id != id)})),
-    increaseProductQuantity: (id: number) => set((state) => {
+    removeProduct: (id: string) => set((state) => ({ goods: state.goods.filter(product => product.id != id)})),
+    increaseProductQuantity: (id: string) => set((state) => {
       const newArray = state.goods.map(product => {
         if (product.id == id) {
           return {...product, quantity: product.quantity + 1}
@@ -41,7 +41,7 @@ export const createBasketStore = (
       });
       return {goods: newArray}
     }),
-    decreaseProductQuantity: (id: number) => set((state) => {
+    decreaseProductQuantity: (id: string) => set((state) => {
       const newArray = state.goods.map(product => {
         if (product.id == id) {
           return {...product, quantity: product.quantity + 1}

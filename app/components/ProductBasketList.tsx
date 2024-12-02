@@ -5,14 +5,22 @@ import dbGoods from "../constants/goods";
 const ProductBasketList = () => {
   const { goods } = useBasketStore((store) => store);
 
+  console.log(goods);
   return (
-    <ul>
-      {goods.map((product) => (
-        <li key={product.id}>
-          <ProductBasketCard {...product} />
-        </li>
-      ))}
-    </ul>
+    <div className="">
+      <div className="px-12 flex justify-between text-2xl font-bold">
+        <h3>Товар</h3>
+        <h3>Название</h3>
+        <h3>Кол-во</h3>
+      </div>
+      <ul className="mt-8 flex flex-col gap-4">
+        {goods.map((product) => (
+          <li key={product.id}>
+            <ProductBasketCard {...product} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
