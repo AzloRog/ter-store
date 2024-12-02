@@ -9,7 +9,7 @@ interface Props {
 const MobileNavigation = ({ breakpoint }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   return (
-    <div className={breakpoint + ":hidden"}>
+    <div className="md:hidden">
       <div
         className="nav-burger z-10"
         onClick={() => setIsMenuOpen((prev) => !prev)}
